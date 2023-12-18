@@ -1,4 +1,4 @@
-from utils.utils import read_file
+from utils.utils import *
 
 
 def main(example=False):

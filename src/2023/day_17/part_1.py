@@ -77,7 +77,7 @@ def main(example=False):
         if (r,c) > Path.end:
             Path.end = (r,c)
 
-    res = traverse()
+    res = traverse_neighbors()
     print(res)
     return res
 

@@ -31,16 +31,18 @@ def is_left(prev, cur):
 def is_right(prev, cur):
     return prev[1] < cur[1]
 
-def go_up(cur):
-    return cur[0] - 1, cur[1]
+def go_up(cur, n=1):
+    return cur[0] - n, cur[1]
 
-def go_down(cur):
-    return cur[0] + 1, cur[1]
+def go_down(cur, n=1):
+    return cur[0] + n, cur[1]
 
-def go_left(cur):
-    return cur[0], cur[1] + 1
+def go_left(cur, n=1):
+    return cur[0], cur[1] + n
 
-def go_right(cur):
-    return cur[0], cur[1] - 1
+def go_right(cur, n=1):
+    return cur[0], cur[1] - n
 
+def traverse_neighbors(cur):
+    return [(cur[0], cur[1] + 1), (cur[0], cur[1] - 1), (cur[0] + 1, cur[1]), (cur[0] - 1, cur[1])]
 

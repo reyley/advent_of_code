@@ -19,6 +19,9 @@ def read_map(example=False):
 def int_line(line, delim=","):
     return [int(x) for x in line.split(delim)]
 
+def int_space_line(line, delim=", "):
+    return [int(x) for x in line.split(delim)]
+
 def is_up(prev, cur):
     return prev[0] < cur[0]
 

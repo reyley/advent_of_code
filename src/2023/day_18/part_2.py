@@ -7,8 +7,8 @@ from utils.utils import *
 dir_map = {
     "U": go_up,
     "D": go_down,
-    "R": go_left,
-    "L": go_right
+    "R": go_right,
+    "L": go_left
 }
 
 class Corner:

@@ -23,15 +23,15 @@ class Path:
         go_other_directions = None
         if is_up(self.prev, self.cur):
             go_same_direction = go_down
-            go_other_directions = go_left, go_right
+            go_other_directions = go_right, go_left
         elif is_down(self.prev, self.cur):
             go_same_direction = go_up
-            go_other_directions = go_left, go_right
+            go_other_directions = go_right, go_left
         elif is_left(self.prev, self.cur):
-            go_same_direction = go_right
+            go_same_direction = go_left
             go_other_directions = go_up, go_down
         elif is_right(self.prev, self.cur):
-            go_same_direction = go_left
+            go_same_direction = go_right
             go_other_directions = go_up, go_down
 
         outputs = []

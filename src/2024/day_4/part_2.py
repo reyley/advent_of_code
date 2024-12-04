@@ -1,5 +1,4 @@
 from utils.utils import *
-from itertools import combinations
 
 directions = [
     (1,1),
@@ -20,10 +19,9 @@ def get(xmas_map, row, col):
 
 def count_x_mas_in_location(row_i, col_j, xmas_map):
     count = 0
-    mas_list = [get(xmas_map, row_i + i, col_j + j) for i , j in directions]
-    mas_str = "".join([get(xmas_map, row_i + i, col_j + j) for i , j in directions])
-    mas_list.sort()
-    if ("MM" in mas_str or "SS" in mas_str) and mas_list == ["M", "M", "S", "S"]:
+    mas1 = {get(xmas_map, row_i + i, col_j + j) for i , j in [(-1,-1), (1,1)]}
+    mas2 = {get(xmas_map, row_i + i, col_j + j) for i, j in [(1, -1), (-1, 1)]}
+    if mas1 == mas2 == {"M", "S"}:
         count += 1
     return count
 

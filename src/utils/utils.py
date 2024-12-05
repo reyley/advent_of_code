@@ -5,6 +5,15 @@ def read_file(example=False):
             yield x.strip()
 
 
+def read_split_file(example=False):
+    part = 1
+    for x in read_file(example):
+        if not x:
+            part += 1
+        else:
+            yield x.strip(), part
+
+
 def read_file_not_strip(example=False):
     file = "example" if example else"input"
     with open(file) as f:

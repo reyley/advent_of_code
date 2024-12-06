@@ -43,7 +43,9 @@ def is_left(prev, cur):
 def is_right(prev, cur):
     return prev[1] < cur[1]
 
-def go_up(cur, n=1):
+def go_up(cur, n=1, loop=False):
+    if not loop and cur[0] - n < 0:
+        raise IndexError
     return cur[0] - n, cur[1]
 
 def go_down(cur, n=1):
@@ -52,7 +54,9 @@ def go_down(cur, n=1):
 def go_right(cur, n=1):
     return cur[0], cur[1] + n
 
-def go_left(cur, n=1):
+def go_left(cur, n=1, loop=False):
+    if not loop and cur[1] - n < 0:
+        raise IndexError
     return cur[0], cur[1] - n
 
 def traverse_neighbors(cur):

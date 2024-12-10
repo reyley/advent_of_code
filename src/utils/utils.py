@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def read_file(example=False):
     file = "example" if example else"input"
     with open(file) as f:

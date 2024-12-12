@@ -1,5 +1,23 @@
 from collections import defaultdict
 
+class Grid:
+
+    def __init__(self):
+        self.n_rows = 0
+        self.n_cols = 0
+        self.map = {}
+
+    def add(self, r, c, ch):
+        self.map[(r, c)] = ch
+        self.n_rows = max(self.n_rows, r + 1)
+        self.n_cols = max(self.n_cols, c + 1)
+
+    def get(self,x):
+        try:
+            return self.map[x]
+        except:
+            return None
+
 
 def read_file(example=False):
     file = "example" if example else"input"
@@ -46,9 +64,7 @@ def is_left(prev, cur):
 def is_right(prev, cur):
     return prev[1] < cur[1]
 
-def go_up(cur, n=1, loop=False):
-    if not loop and cur[0] - n < 0:
-        raise IndexError
+def go_up(cur, n=1):
     return cur[0] - n, cur[1]
 
 def go_down(cur, n=1):
@@ -57,11 +73,9 @@ def go_down(cur, n=1):
 def go_right(cur, n=1):
     return cur[0], cur[1] + n
 
-def go_left(cur, n=1, loop=False):
-    if not loop and cur[1] - n < 0:
-        raise IndexError
+def go_left(cur, n=1):
     return cur[0], cur[1] - n
 
 def traverse_neighbors(cur):
-    return [(cur[0], cur[1] + 1), (cur[0], cur[1] - 1), (cur[0] + 1, cur[1]), (cur[0] - 1, cur[1])]
+    return [(cur[0], cur[1] + 1), (cur[0] + 1, cur[1]), (cur[0], cur[1] - 1), (cur[0] - 1, cur[1])]
 

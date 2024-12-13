@@ -6,10 +6,11 @@ authors = ["reyley <rachel.ilan@uplight.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 ortools = "^9.8.3296"
 scipy = "^1.11.4"
 z3-solver = "^4.12.4.0"
+sympy = "^1.13.3"
 
 
 [build-system]

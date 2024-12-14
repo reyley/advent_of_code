@@ -1,4 +1,7 @@
 from collections import defaultdict
+import re
+from functools import cache
+
 
 class Grid:
 
@@ -76,6 +79,22 @@ def go_right(cur, n=1):
 def go_left(cur, n=1):
     return cur[0], cur[1] - n
 
+
 def traverse_neighbors(cur):
     return [(cur[0], cur[1] + 1), (cur[0] + 1, cur[1]), (cur[0], cur[1] - 1), (cur[0] - 1, cur[1])]
 
+
+@cache
+def traverse_neighbors_horizontal(cur):
+    res = set()
+    for i in [-1,0,1]:
+        for j in [-1,0,1]:
+            if i != 0 or j != 0:
+                res.add((cur[0] + i, cur[1] + j))
+    return res
+
+def mul(items):
+    m = 1
+    for x in items:
+        m *= x
+    return m

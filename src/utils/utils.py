@@ -6,18 +6,28 @@ from typing import Any
 
 class Grid:
 
-    def __init__(self):
+    def __init__(self, start_ch=None):
         self.n_rows = 0
         self.n_cols = 0
         self.map = {}
+        self.start = None
+        self.start_ch = start_ch
 
     def __getitem__(self, item):
         return self.map[item]
+
+    def __setitem__(self, key, value):
+        return self.add(key[0], key[1], value)
+
+    def set_start(self, start):
+        self.start = start
 
     def add(self, r, c, ch: Any):
         self.map[(r, c)] = ch
         self.n_rows = max(self.n_rows, r + 1)
         self.n_cols = max(self.n_cols, c + 1)
+        if ch == self.start_ch:
+            self.start = (r,c)
 
     def get(self,x):
         try:
@@ -52,7 +62,7 @@ def read_split_file(example=False):
 
 
 def read_file_not_strip(example=False):
-    file = "example" if example else"input"
+    file = "example" if example else "input"
     with open(file) as f:
         for x in f:
             yield x.strip("\n")
@@ -101,6 +111,12 @@ def go_by_arrow(cur, arrow, n=1):
         return go_right(cur,n)
     if arrow == "<":
         return go_left(cur,n)
+
+
+def clockwise(arrow, n=1):
+    arrows = ["^", ">", "v", "<"]
+    i = arrows.index(arrow)
+    return arrows[(i + n) % len(arrows)]
 
 
 def traverse_neighbors(cur):

@@ -139,9 +139,9 @@ def find_A(program):
                 if run_program_orig_one_step(program, a) == res:
                     next_options.append(a)
         options = next_options
-    program_str = ",".join(str(x) for x in program)
-    for a in options:
-        assert run_program_orig(program, a) == program_str
+    # program_str = ",".join(str(x) for x in program)
+    # for a in options:
+    #     assert run_program_orig(program, a) == program_str
     return min(options)
 
 

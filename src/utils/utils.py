@@ -11,6 +11,7 @@ class Grid:
         self.n_cols = 0
         self.map = {}
         self.start = None
+        self.end = None
         self.start_ch = start_ch
 
     def __getitem__(self, item):
@@ -29,11 +30,11 @@ class Grid:
         if ch == self.start_ch:
             self.start = (r,c)
 
-    def get(self,x):
+    def get(self,x, default=None):
         try:
             return self.map[x]
         except:
-            return None
+            return default
 
     def print(self, special_location=None):
         line = []

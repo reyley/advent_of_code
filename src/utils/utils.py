@@ -6,16 +6,18 @@ from typing import Any
 
 class Grid:
 
-    def __init__(self, start_ch=None):
+    def __init__(self, start_ch=None, end_ch=None, elem_class=None):
         self.n_rows = 0
         self.n_cols = 0
         self.map = {}
         self.start = None
         self.end = None
         self.start_ch = start_ch
+        self.end_ch = end_ch
+        self.elem_class = elem_class
 
     def __getitem__(self, item):
-        return self.map[item]
+        return self.get(item)
 
     def __setitem__(self, key, value):
         return self.add(key[0], key[1], value)
@@ -24,11 +26,17 @@ class Grid:
         self.start = start
 
     def add(self, r, c, ch: Any):
-        self.map[(r, c)] = ch
+
         self.n_rows = max(self.n_rows, r + 1)
         self.n_cols = max(self.n_cols, c + 1)
         if ch == self.start_ch:
             self.start = (r,c)
+        if ch == self.end_ch:
+            self.end = (r,c)
+        if self.elem_class:
+            self.map[(r, c)] = self.elem_class(ch)
+        else:
+            self.map[(r, c)] = ch
 
     def get(self,x, default=None):
         try:
@@ -123,6 +131,9 @@ def clockwise(arrow, n=1):
 def traverse_neighbors(cur):
     return [(cur[0], cur[1] + 1), (cur[0] + 1, cur[1]), (cur[0], cur[1] - 1), (cur[0] - 1, cur[1])]
 
+
+def traverse_next_neighbors(cur, prev):
+    return [x for x in traverse_neighbors(cur) if x != prev]
 
 @cache
 def traverse_neighbors_horizontal(cur):

@@ -25,8 +25,9 @@ class Grid:
     def set_start(self, start):
         self.start = start
 
-    def add(self, r, c, ch: Any):
-
+    def add(self, r, c= None, ch: Any=None):
+        if c is None:
+            r,c  = r
         self.n_rows = max(self.n_rows, r + 1)
         self.n_cols = max(self.n_cols, c + 1)
         if ch == self.start_ch:
@@ -80,6 +81,12 @@ def read_map(example=False):
     for r, line in enumerate(read_file(example)):
         for c, char in enumerate(line):
             yield r,c,char
+
+def read_grid(example=False):
+    grid = Grid()
+    for r,c,char in read_map(example):
+        grid.add(r,c,char)
+    return grid
 
 def int_line(line, delim=","):
     return [int(x) for x in line.split(delim)]

@@ -82,8 +82,8 @@ def read_map(example=False):
         for c, char in enumerate(line):
             yield r,c,char
 
-def read_grid(example=False):
-    grid = Grid()
+def read_grid(example=False, start_ch=None, end_ch=None, elem_class=None):
+    grid = Grid(start_ch, end_ch, elem_class)
     for r,c,char in read_map(example):
         grid.add(r,c,char)
     return grid

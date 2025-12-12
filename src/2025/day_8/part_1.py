@@ -13,7 +13,7 @@ class Circuit:
     def __init__(self, nodes=None):
         self.nodes = set() if nodes is None else nodes
         self.key = self.idx
-        self.idx += 1
+        Circuit.idx += 1
         Circuit.all[self.key] = self
         for node in self.nodes:
             Circuit.node_to_circuit[node] = self
@@ -58,7 +58,7 @@ def create_circuits(shortest_connections):
             circuit2.nodes.add(box1)
             Circuit.node_to_circuit[box1] = circuit2
         else:
-            Circuit({box1, box1})
+            Circuit({box1, box2})
 
 def main(example=False):
     Circuit.all = {}
@@ -80,5 +80,5 @@ def main(example=False):
     return res
 
 
-assert main(True) == 13
+assert main(True) == 40
 main()
